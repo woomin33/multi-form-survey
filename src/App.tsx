@@ -1,6 +1,7 @@
 import './App.css'
 import MainLayout from './components/common/MainLayout'
 import Tabs, { Tab, TabList, TabPanel, TabPanels } from './components/common/Tabs'
+import QuestionEditor from './components/edit/QuestionEditor'
 
 function App() {
 
@@ -12,7 +13,9 @@ function App() {
           <Tab index={1}>tab2</Tab>
         </TabList>
         <TabPanels>
-          <TabPanel index={0}>panel1</TabPanel>
+          <TabPanel index={0}>
+            <QuestionEditor />
+          </TabPanel>
           <TabPanel index={1}>panel2</TabPanel>
         </TabPanels>
       </Tabs>
