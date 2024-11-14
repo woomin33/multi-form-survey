@@ -2,14 +2,15 @@ import { createContext, ReactNode, RefObject, useCallback, useContext, useState 
 import useOutsideClick from "../../hooks/common/useOutsideClick";
 
 interface DropdownProps<T>{
+  defaultValue?: T
   placeholder?: string
   options: DropdownOption<T>[]
   onChange?: (value: T) => void
 }
 
-export default function Dropdown<T>({ placeholder, options, onChange}: DropdownProps<T>){
+export default function Dropdown<T>({ defaultValue, placeholder, options, onChange}: DropdownProps<T>){
   const [opened, setOpened] = useState(false)
-  const [selected, setSelected] = useState(-1)
+  const [selected, setSelected] = useState(defaultValue ? options.findIndex(option => option.value === defaultValue) : -1)
 
   const open = useCallback(() => setOpened(true), [])
   const close = useCallback(() => setOpened(false), [])
@@ -52,7 +53,7 @@ function DropdownButton({placeholder = "select"}: {placeholder?: string}){
   const { open, options, selected } = useContext(DropdownContext)!
 
   return (
-    <button className="border border-gray-300 rounded-10 min-w-197 p-16 pr-36 relative text-left" onClick={open}>{selected >= 0 ? options[selected].label : placeholder ?? ''}
+    <button className="border border-gray300 rounded-10 min-w-197 p-16 pr-36 relative text-left" onClick={open}>{selected >= 0 ? options[selected].label : placeholder ?? ''}
     <span className="absolute right-12 top-1/2 transform -translate-y-1/2 ">▼</span>
     </button>
   )
@@ -64,7 +65,7 @@ function DropdownMenu(){
 
   return(
     opened ? (
-      <div ref={containerRef as RefObject<HTMLDivElement>} className="absolute left-0 top-62 border border-gray-300 rounded-10 flex flex-col min-w-197 bg-white">
+      <div ref={containerRef as RefObject<HTMLDivElement>} className="absolute left-0 top-62 border border-gray300 rounded-10 flex flex-col min-w-197 bg-white z-10">
         {options.map((option, index) => (
           <DropdownMenuItem key={`${option.value}`} label={option.label} onSelect={() => onChange(index)} />
         ))}
@@ -75,6 +76,6 @@ function DropdownMenu(){
 
 function DropdownMenuItem({ label, onSelect }: { label: ReactNode; onSelect: () => void}){
   return (
-    <button className="text-left p-14 border-b-1 border-gray-300 last:border-b-0" onClick={onSelect}>{label}</button>
+    <button className="text-left p-14 border-b-1 border-gray300 last:border-b-0" onClick={onSelect}>{label}</button>
   )
 }

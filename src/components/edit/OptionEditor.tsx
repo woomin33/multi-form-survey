@@ -25,7 +25,7 @@ export default function OptionEditor({type}: OptionEditorProps){
       ))}
       <div className="flex items-center mt-28">
         {icons[type]}
-        <button className="text-gray-500 text-16" onClick={() => {
+        <button className="text-gray500 text-16" onClick={() => {
           setOptions(prev => [...prev, ''])
         }}>
           옵션추가

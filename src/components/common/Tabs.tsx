@@ -26,7 +26,7 @@ export function Tab({ children, index }: PropsWithChildren<{ index: number }>) {
   const { activeTab, setActiveTab } = useContext(TabContext)
   return <button className={cn("border-b-3 p-14", "", {
     "text-main border-main": activeTab === index,
-     "border-transparent text-gray-500" : activeTab !== index
+     "border-transparent text-gray500" : activeTab !== index
     })}
   onClick={() => setActiveTab(index)}>{children}</button>
 }
