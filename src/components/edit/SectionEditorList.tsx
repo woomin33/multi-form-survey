@@ -1,4 +1,5 @@
 import { useSurveyStore } from "../../store"
+import EditorMenu from "./EditorMenu"
 import SectionEditor from "./SectionEditor"
 
 
@@ -8,9 +9,7 @@ export default function SectionEditorList(){
 
   return(
     <div className="relative">
-      <div className="absolute top-0 -right-50">
-        <button className="" onClick={() => surveyStore.addQuestion()}>+</button>
-      </div>
+      <EditorMenu className="fixed bottom-30 left=[calc(100%-72px)] sm:bottom-auto sm:top-[263px] sm:left-[calc(50%+340px)]" />
       <div>
         {surveyStore.sections.map(section => (
           <SectionEditor key={section.id} section={section} />
