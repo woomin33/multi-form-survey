@@ -1,10 +1,11 @@
+import { observer } from "mobx-react-lite"
 import { useSurveyStore } from "../../store"
 import EditorMenu from "./EditorMenu"
 import SectionEditor from "./SectionEditor"
 
 
 
-export default function SectionEditorList(){
+const SectionEditorList = observer(function SectionEditorList(){
   const surveyStore = useSurveyStore()
 
   return(
@@ -17,4 +18,6 @@ export default function SectionEditorList(){
       </div>
     </div>
   )
-}
+})
+
+export default SectionEditorList

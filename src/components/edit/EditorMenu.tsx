@@ -3,7 +3,6 @@ import ImageIcon from '../../assets/icons/image.svg?react'
 import SectionPlusIcon from '../../assets/icons/view_comfy.svg?react'
 import { useSurveyStore } from '../../store'
 import cn from 'classnames'
-import { Cn } from '../../types/global'
 
 export default function EditorMenu({ className }: Cn){
   const surveyStore = useSurveyStore();

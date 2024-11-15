@@ -1,6 +1,5 @@
 import { PropsWithChildren } from "react";
 import cn from 'classnames'
-import { Cn } from "../../types/global";
 
 export default function Panel({ className, children}: PropsWithChildren<Cn>){
   return(
@@ -23,7 +22,7 @@ export function PanelBody({className, children}: PropsWithChildren<Cn>){
 export function PanelFooter({className, children}: PropsWithChildren<Cn>){
   return(
     <>
-      <hr className="border-gray500 mb-20"/>
+      <hr className="border-gray100 mb-20"/>
       <div className={className}>{children}</div>
     </>
   )
