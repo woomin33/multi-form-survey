@@ -12,6 +12,10 @@ class SurveyStore{
     this.focusedSectionId = this.sections[0].id
   }
 
+  setFocusSectionId(id: number){
+    this.focusedSectionId = id;
+  }
+
   addSection(){
     const section = new Section();
     this.sections.push(section);

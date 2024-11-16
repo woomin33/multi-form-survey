@@ -18,7 +18,7 @@ interface Props{
 
 const QuestionEditor = observer(function QuestionEditor({question, onCopy, onDelete}: Props) {
   return(
-    <Panel>
+    <Panel className='border-l-10 border-l-transparent focus-within:border-l-main'>
       <PanelHeader className='flex mb-25'>
         <Input className='flex-1 mr-30' />
         <QuestionTypeEditor type={question.type} onChange={question.setType} />
