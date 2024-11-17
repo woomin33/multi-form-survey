@@ -5,7 +5,7 @@ export default class JsonStorage<Data>{
   #values: Record<Key, Data> = {};
 
   constructor(private readonly filename: string){
-
+    this.load()
   }
 
   load(){

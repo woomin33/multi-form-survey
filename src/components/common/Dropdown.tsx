@@ -10,7 +10,7 @@ interface DropdownProps<T>{
 
 export default function Dropdown<T>({ defaultValue, placeholder, options, onChange}: DropdownProps<T>){
   const [opened, setOpened] = useState(false)
-  const [selected, setSelected] = useState(defaultValue ? options.findIndex(option => option.value === defaultValue) : -1)
+  const [selected, setSelected] = useState(defaultValue !== undefined ? options.findIndex(option => option.value === defaultValue) : -1)
 
   const open = useCallback(() => setOpened(true), [])
   const close = useCallback(() => setOpened(false), [])
