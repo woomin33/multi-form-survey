@@ -1,31 +1,31 @@
 import { makeAutoObservable } from "mobx"
 import Question from "./question"
 
-type SectionData = {
+export type SectionData = {
   id: number
   title: string
   description: string
-  question: Question[]
+  questions: Question[]
 }
 
 export default class Section implements SectionData{
   id: number;
   title: string;
   description: string;
-  question: Question[];
+  questions: Question[];
 
   constructor(data: SectionData = {
     id: Date.now(),
     title: '',
     description: '',
-    question: [new Question()],
+    questions: [new Question()],
   }){
     makeAutoObservable(this, {}, { autoBind: true })
 
     this.id = data.id;
     this.title = data.title;
     this.description = data.description;
-    this.question = data.question;
+    this.questions = data.questions.map(question => new Question(question));
   }
 
   setTitle(title: string){
@@ -37,17 +37,17 @@ export default class Section implements SectionData{
   }
 
   addQuestion(){
-    this.question.push(new Question());
+    this.questions.push(new Question());
   }
 
   removeQuestion(id: number){
-    this.question = this.question.filter(question => question.id !== id);
+    this.questions = this.questions.filter(question => question.id !== id);
   }
 
   copyQuestion(id: number){
-    const question = this.question.find(q => q.id === id);
+    const question = this.questions.find(q => q.id === id);
     if(question){
-      this.question.push(new Question({
+      this.questions.push(new Question({
         ...question,
         id: Date.now()
       }))

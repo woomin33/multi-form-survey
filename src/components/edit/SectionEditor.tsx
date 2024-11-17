@@ -16,7 +16,7 @@ const SectionEditor = observer(function SectionEditor({section, capTitle, onChan
   return (
     <div className="[&>*]:mb-24" onClick={handleClickContainer}>
       <SectionTitleEditor section={section} capTitle={capTitle} />
-      {section.question.map(question => (
+      {section.questions.map(question => (
         <QuestionEditor key={question.id} question={question} onCopy={section.copyQuestion} onDelete={section.removeQuestion}/>
       ))}
     </div>
