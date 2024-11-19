@@ -1,12 +1,11 @@
 import express from 'express'
 import JsonStorage from '../../utils/jsonStorage';
 import path from 'path'
-import { QuestionData, SectionData } from '../../types/app';
+import { SectionData, Statistics, SurveyResponse } from '../../types/app';
+import { getStatistics } from '../../utils/statistics';
 
 const router = express.Router();
 const storage = new JsonStorage<{sections: SectionData[]; emailColleted: boolean; responses: SurveyResponse[]; }>(path.join(__dirname, '../data/surveys.json'));
-
-type SurveyResponse = Record<SectionData['id'], Record<QuestionData['id'], string>>;
 
 router.get('/', (_req, res) => {
   return res.json(storage.getAll());
@@ -60,8 +59,23 @@ router.post('/:id/responses', (req, res) => {
     ...data,
     responses: [...(data.responses ?? []), req.body],
   })
-  console.log(data)
+
   return res.status(201).json({message: 'Response added'});
+})
+
+router.get('/:id/statistics', (req, res) => {
+  const id = Number(req.params.id);
+  const data = storage.get(id);
+
+  if(!data){
+    return res.status(404).json({ message: 'Not found' });
+  }
+
+  const {responses, sections} = data;
+
+  const statistics: Statistics = getStatistics(responses, sections);
+
+  return res.json({ statistics, count: responses.length })
 })
 
 export default router;
