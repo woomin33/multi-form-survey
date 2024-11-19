@@ -1,7 +1,8 @@
 import { makeAutoObservable } from "mobx";
 import { createContext, PropsWithChildren, useContext } from "react";
-import Section, { SectionData } from "./models/section";
+import Section from "./models/section";
 import callApi from "./utils/api";
+import { SectionData } from "./types/app";
 
 class SurveyStore{
   emailCollected: boolean;

@@ -5,7 +5,7 @@ import SectionEditor from "./SectionEditor"
 
 
 
-const SectionEditorList = observer(function SectionEditorList(){
+const SectionListEditor = observer(function SectionEditorList(){
   const surveyStore = useSurveyStore()
 
   return(
@@ -20,4 +20,4 @@ const SectionEditorList = observer(function SectionEditorList(){
   )
 })
 
-export default SectionEditorList
+export default SectionListEditor
